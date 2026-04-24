@@ -163,6 +163,7 @@ Porównanie Parallel vs Thread:
        8 |          49,08 |        49,11 | Parallel
       16 |          42,49 |        49,87 | Parallel
 ```
+---
 ## 3) Uruchomienie CLI ( wraz z arugmentami i podglądem bierzącym operacji)
 ```bash
 dotnet run --project ConsoleApp.csproj -- 4 2 1,2,4 --show
@@ -215,7 +216,46 @@ Macierz wynikowa:
   82  96  49  63
  127 191 135  85
 ```
+---
+## 4) Uruchomienie CLI ( macierz 1000x1000)
+```bash
+dotnet run --project ConsoleApp.csproj -- 1000 5 1,2,4,8,16 
+```
 
+```aiignore
+(Parallel vs Wątek)
+Wymiar macierzy =>  1000 x 1000
+Ile razy powtórzono? =>  5
+Uyte wątki =>  1, 2, 4, 8, 16
+
+
+Wyniki - Parallel:
+   Wątki |               [ms] |  Który szybszy? | Czy zgodne z wątkiem?
+---------------------------------------------------------------------------
+       1 |            5895,22 |            1,00 | tak
+       2 |            3060,56 |            1,93 | tak
+       4 |            1585,15 |            3,72 | tak
+       8 |             806,86 |            7,31 | tak
+      16 |             609,53 |            9,67 | tak
+
+Wyniki - Thread:
+   Wątki |               [ms] |  Który szybszy? | Czy zgodne z wątkiem?
+---------------------------------------------------------------------------
+       1 |            6153,63 |            1,00 | tak
+       2 |            3120,46 |            1,97 | tak
+       4 |            1589,55 |            3,87 | tak
+       8 |             807,87 |            7,62 | tak
+      16 |             607,83 |           10,12 | tak
+
+Porównanie Parallel vs Thread:
+   Wątki |  Parallel [ms] |  Thread [ms] | Szybsze podejście
+------------------------------------------------------------------
+       1 |        5895,22 |      6153,63 | Parallel
+       2 |        3060,56 |      3120,46 | Parallel
+       4 |        1585,15 |      1589,55 | Parallel
+       8 |         806,86 |       807,87 | Parallel
+      16 |         609,53 |       607,83 | Thread
+```
 ---
 
 ## Autor
